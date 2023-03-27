@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="manifest" href="./manifest.json" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
+      crossorigin="anonymous"
+    />
+    <title>uek-pwa</title>
+  </head>
+  <body>
+    <div
+      class="container d-flex justify-content-center align-items-center text-center"
+      style="min-height: 100vh"
+    >
+      <div>
+        <h1>uek-pwa</h1>
+        <ul class="list-group mt-4">
+          <li class="list-group-item">Maciej Choma</li>
+          <li class="list-group-item">Szymon Wieczorek</li>
+          <li class="list-group-item">Kacper Skrzyński</li>
+        </ul>
+        <div class="mt-4">
+          <a href="./map.html"
+            ><button type="button" class="btn btn-primary">Map</button></a
+          >
+          <button type="button" class="btn btn-primary" onclick="launchSOS()">
+            S.O.S
+          </button>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/uek-pwa/sw.js", { scope: "/uek-pwa/" })
+            .then(() => {
+              console.log("Service worker registered");
+            });
+        });
+      }
+    </script>
+    <script>
+      function launchSOS() {
+        navigator.vibrate([100, 100, 100, 500, 500, 500, 100, 100, 100]);
+      }
+    </script>
+  </body>
+</html>
